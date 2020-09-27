@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#This script is using Hydra tool
+
 menu()
 {
     banner()
