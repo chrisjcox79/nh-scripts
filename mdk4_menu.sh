@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#This script is using mdk4 tool
+
 ########## FUNCTIONS ##########
 
 banner(){
