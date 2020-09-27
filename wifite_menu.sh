@@ -1,4 +1,9 @@
 #!/bin/bash
+
+#This script is using wifite2 tool
+
+########## FUNCTIONS ##########
+
 interface()
 {
     clear
@@ -45,5 +50,6 @@ run_wlan1()
         ifconfig wlan1 down
 }
 
+########## RUN SCRIPT ##########
 
 interface
