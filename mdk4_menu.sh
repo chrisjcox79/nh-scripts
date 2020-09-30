@@ -124,7 +124,7 @@ mdk4_install(){
             printf "\e[92m\nDone\n\e[0m"
             ;;
         [nN][oO]|[nN])
-            printf "\nKernel Panic - not syncing: Attempted to kill ini!
+            printf "\nKernel Panic - not syncing: Attempted to kill init!"
             exit
             ;;
         *)
