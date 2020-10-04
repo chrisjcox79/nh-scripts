@@ -30,7 +30,7 @@ run_wlan0()
 	. monstart-nh
 	printf "Launching wifite...\n"
 	sleep 1
-	wifite -i wlan0
+	wifite -i wlan0 -ab -mac
 	printf "\nStopping nexmon on wlan0...\n"
 	sleep 1
 	. monstop-nh
@@ -44,7 +44,7 @@ run_wlan1()
         ifconfig wlan1 up
         printf "Launching wifite...\n"
         sleep 1
-	wifite -i wlan1
+	wifite -i wlan1 -mac
         printf "Turning off wlan1...\n"
         sleep 1
         ifconfig wlan1 down
