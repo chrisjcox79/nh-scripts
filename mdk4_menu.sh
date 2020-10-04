@@ -75,7 +75,7 @@ f_bcn(){
     read -p "Start attack? (Y/n): " question
     case $question in
         [yY][eE][sS]|[yY])
-            if [ -z $iface ]; then banner; printf "Starting nexmon on wlan0...\n"; sleep 1; . monstart-nh; printf "Launching MDK4...\n"; sleep 1; mdk4 wlan0 b -a; printf "\nStopping nexmon on wlan0...\n";reset_mac; sleep 1; . monstop-nh; else banner; printf "Launching MDK4...\n"; sleep 1; mdk4 wlan1 b -a -s 150 ; fi
+            if [ -z $iface ]; then banner; printf "Starting nexmon on wlan0...\n"; sleep 1; . monstart-nh; printf "Launching MDK4...\n"; sleep 1; mdk4 wlan0 b -a -s 2700; printf "\nStopping nexmon on wlan0...\n";reset_mac; sleep 1; . monstop-nh; else banner; printf "Launching MDK4...\n"; sleep 1; mdk4 wlan1 b -a -s 150 ; fi
             ;;
         [nN][oO]|[nN])
             exit
