@@ -7,31 +7,55 @@
 interface()
 {
     clear
-    printf "############################\n"
-    printf "#          WIFITE          #\n"
-    printf "############################\n"
+    printf "[*] Welcome to Wifite\n\n"
+    printf "[*] Select which interface you using for attack? (1-2)\n\n"
     printf "1. wlan0 - internal wireless\n"
-    printf "2. wlan1 - external wireless\n"
-    printf "3. exit\n\n"
-    read -p "Select interface: " iface
+    printf "2. wlan1 - external wireless\n\n"
+    read -p "Choice (1-2): " iface
     case $iface in 
-        1) run_wlan0 ;;
-        2) run_wlan1 ;;
-        3) exit ;;
-        *) printf "Bad number! Try again..." && sleep 3 && interface ;;
+        1) run_wlan0s ;;
+        2) run_wlan1s ;;
+        *) printf "[!] Wrong number! Try again..." && sleep 1 && interface ;;
+    esac
+}
+
+run_wlan0s(){
+    clear
+    read -p "[*] Start attack? (Y/n): " start
+    case $start in
+        [yY]|[yY][eE][sS])
+            run_wlan0
+            ;;
+        [nN]|[nN][oO])
+            exit
+            ;;
+        *) printf "[!] Wrong number! Try again..." && sleep 1 && interface ;;
+    esac
+}
+
+run_wlan1s(){
+    clear
+    read -p "[*] Start attack? (Y/n): " start
+    case $start in
+        [yY]|[yY][eE][sS])
+            run_wlan1
+            ;;
+        [nN]|[nN][oO])
+            exit
+            ;;
+        *) printf "[!] Wrong number! Try again..." && sleep 1 && interface ;;
     esac
 }
 
 run_wlan0()
 {
-    clear
-    printf "Starting nexmon on wlan0...\n"
+    printf "\n[*] Starting nexmon on wlan0...\n"
 	sleep 1
 	. monstart-nh
-	printf "Launching wifite...\n"
+	printf "\n[*] Launching wifite...\n\n"
 	sleep 1
 	wifite -i wlan0 -ab -mac
-	printf "\nStopping nexmon on wlan0...\n"
+	printf "\n[*] Stopping nexmon on wlan0...\n"
 	sleep 1
 	. monstop-nh
 }
@@ -39,15 +63,12 @@ run_wlan0()
 run_wlan1()
 {
         clear
-	printf "Turning on wlan1...\n"
-	sleep 1
+        sleep 1
         ifconfig wlan1 up
-        printf "Launching wifite...\n"
+        printf "\n[*] Launching wifite...\n"
         sleep 1
-	wifite -i wlan1 -mac
-        printf "Turning off wlan1...\n"
+      	wifite -i wlan1 -mac
         sleep 1
-        ifconfig wlan1 down
 }
 
 ########## RUN SCRIPT ##########
