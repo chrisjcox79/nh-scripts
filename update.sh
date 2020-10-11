@@ -21,6 +21,11 @@ main_menu(){
             pip3 install --upgrade pip
             pip install --upgrade pip
             apt-get autoremove -y
+            rm /root/nh-scripts -f -r
+            cd /root/
+            git clone https://github.com/rkhunt3r/nh-scripts
+            cd /root/nh-scripts/
+            chmod 777 *
             printf "\n\n[*] DONE!!!\n\n"
             sleep 3
             read -p "[*] Press [ENTER] to exit..." click
