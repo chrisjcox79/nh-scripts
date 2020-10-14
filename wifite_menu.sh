@@ -63,7 +63,7 @@ check_tools(){
    command -v bully >/dev/null 2>&1 || { clear; printf >&2 "Requied tools\e[91m are not installed!\n\e[0m"; f_install;exit; }
    command -v hcxdumptool >/dev/null 2>&1 || { clear; printf >&2 "Requied tools\e[91m are not installed!\n\e[0m"; f_install;exit; }
    command -v cowpatty >/dev/null 2>&1 || { clear; printf >&2 "Requied tools\e[91m are not installed!\n\e[0m"; f_install;exit; }
-   command -v hcimactool >/dev/null 2>&1 || { clear; printf >&2 "Requied tools\e[91m are not installed!\n\e[0m"; f_install;exit; }
+   command -v hcxmactool >/dev/null 2>&1 || { clear; printf >&2 "Requied tools\e[91m are not installed!\n\e[0m"; f_install;exit; }
 }
 
 f_install(){
