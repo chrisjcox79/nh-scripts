@@ -9,8 +9,8 @@ interface()
     clear
     printf "[*] Welcome to Wifite\n\n"
     printf "[*] Select which interface you using for attack? (1-2)\n\n"
-    printf "1. wlan0 - internal wireless\n"
-    printf "2. wlan1 - external wireless\n\n"
+    printf "1. wlan0 (Internal Nexus WiFi)\n"
+    printf "2. wlan1 (External WiFi card)\n\n"
     read -p "Choice (1-2): " iface
     case $iface in 
         1) run_wlan0s ;;
@@ -59,6 +59,35 @@ run_wlan0()
 	sleep 1
 	. monstop-nh
 }
+check_tools(){
+   command -v bully >/dev/null 2>&1 || { clear; printf >&2 "Requied tools\e[91m are not installed!\n\e[0m"; f_install;exit; }
+   command -v hcxdumptool >/dev/null 2>&1 || { clear; printf >&2 "Requied tools\e[91m are not installed!\n\e[0m"; f_install;exit; }
+   command -v cowpatty >/dev/null 2>&1 || { clear; printf >&2 "Requied tools\e[91m are not installed!\n\e[0m"; f_install;exit; }
+   command -v hcimactool >/dev/null 2>&1 || { clear; printf >&2 "Requied tools\e[91m are not installed!\n\e[0m"; f_install;exit; }
+}
+
+f_install(){
+    read -p "[*] Install? (Y/n): "  install
+    case $install in
+        [yY][eE][sS]|[yY])
+            clear
+            printf "\e[92m[*] Installing...\n\e[0m"
+            apt-get update
+            apt-get install hcxtools -y
+            apt-get install hcxdumptool -y
+            apt-get install bully -y
+            apt-get install cowpatty -y
+            printf "\e[92m\n[*] Done\n\e[0m"
+            ;;
+        [nN][oO]|[nN])
+            printf "\n[!] Kernel Panic - not syncing: Attempted to kill init!\n"
+            exit
+            ;;
+        *)
+            printf "[!] Wrong answer! Try again...\n"; sleep 1; mdk4_check
+            ;;
+    esac
+}
 
 run_wlan1()
 {
@@ -73,4 +102,5 @@ run_wlan1()
 
 ########## RUN SCRIPT ##########
 
+check_tools
 interface
