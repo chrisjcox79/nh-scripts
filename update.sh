@@ -17,7 +17,7 @@ main_menu(){
             printf "\n\n[*] Starting update... This can take some time, Wait!\n\n"
             sleep 2
             apt-get update
-            apt-get full-upgrade -y
+            apt-get upgrade -y
             pip3 install --upgrade pip
             pip install --upgrade pip
             apt-get autoremove -y
