@@ -27,9 +27,6 @@ main_menu(){
             cd /root/nh-scripts/
             chmod 777 *
             printf "\n\n[*] DONE!!!\n\n"
-            sleep 3
-            read -p "[*] Press [ENTER] to exit..." click
-            exit
             ;;
         [nN][oO]|[nN])
             printf "\n\n"
